@@ -30,11 +30,40 @@
 	================================================== -->
 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 	<link rel="icon" href="favicon.ico" type="image/x-icon">
+	<style>
+        body {
+            cursor: none;
+        }
 
+        .custom-cursor {
+            width: 30px;
+            height: 30px;
+            background-color: yellow;
+            border-radius: 50%;
+            position: absolute;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 9999; /* Ensure the cursor is on top of other elements */
+        }
+		.trail {
+            width: 10px;
+            height: 10px;
+            background-color: red;
+            border-radius: 50%;
+            position: absolute;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 9998;
+            opacity: 0;
+            transition: opacity 0.3s ease-out;
+        }
+
+    </style>
 </head>
 
 <body id="top">
-
+	<div class="custom-cursor"></div>
+	<div class="trail"></div>
 	<!-- header 
    ================================================== -->
    <header> 
@@ -550,6 +579,30 @@
     	<div id="loader"></div>
    </div> 
 
+   <script>
+	document.addEventListener('DOMContentLoaded', () => {
+		const cursor = document.querySelector('.custom-cursor');
+		const trail = document.querySelector('.trail');
+
+		document.addEventListener('mousemove', (e) => {
+			// Set the position of the custom cursor to the mouse coordinates
+			cursor.style.left = `${e.pageX}px`;
+			cursor.style.top = `${e.pageY}px`;
+
+			// Set the position of the trail with a slight delay
+			setTimeout(() => {
+				trail.style.left = `${e.pageX}px`;
+				trail.style.top = `${e.pageY}px`;
+				trail.style.opacity = 1;
+			}, 10);
+		});
+
+		// Hide the trail after a short delay
+		document.addEventListener('mouseout', () => {
+			trail.style.opacity = 0;
+		});
+	});
+</script>
    <!-- Java Script
    ================================================== --> 
    <script src="js/jquery-2.1.3.min.js"></script>

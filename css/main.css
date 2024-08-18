@@ -1296,6 +1296,25 @@ header .header-logo a {
   -ms-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }
+
+.menu-icon-res {
+  position: fixed;         /* Keeps the element fixed to the viewport */
+  right: 0;                /* Aligns the element to the right side of the screen */
+  top: 50%;                /* Vertically centers the element */
+  transform: translateY(-50%); /* Adjusts position to perfectly center the element */
+  width: 15vw;             /* Width is 30% of the viewport width */
+  height: 30vw;            /* Height is 30% of the viewport width */
+  z-index: 1000;           /* Ensures the element appears on top of other content */
+}
+
+spline-viewer {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+
+
 #header-menu-trigger.opaque {
   background-color: #000000;
 }
